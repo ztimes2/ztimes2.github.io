@@ -29,15 +29,15 @@
         </style>
     </head>
     <body>
-        <h1 
+        <h1 id="code"
             style="
                 font-family: monospace;
                 font-weight: normal;
                 font-size: 5em;
-                color: #298200;
+                color: gray;
             "
         ></h1>
-        <span 
+        <span id="cursor"
             style="
                 font-family: monospace;
                 font-weight: bold;
@@ -54,12 +54,17 @@
             async function typeCode(text) { 
                 for (let i = 0; i <= text.length; i++) {
                     await sleep(130);
-                    document.querySelector("body > h1").innerText = text.slice(0, i); 
+                    const cursor = document.querySelector("#code");
+                    const s = text.slice(0, i);
+                    cursor.innerText = s;
+                    if (s.startsWith("// ")) {
+                        cursor.style.color = "#298200";
+                    };
                 }
             }
 
             async function toggleCursorNTimes(n) {
-                const cursor = document.querySelector("body > span");
+                const cursor = document.querySelector("#cursor");
                 for (let i = 0; i < n; i++) {
                     await sleep(350);
                     if (cursor.style.visibility === "hidden") {
@@ -72,7 +77,7 @@
            
             async function run() {
                 await toggleCursorNTimes(5);
-                await typeCode("// TODO coming soon...");
+                await typeCode("// TODO coming soon");
                 await toggleCursorNTimes(Infinity);
             };
 
