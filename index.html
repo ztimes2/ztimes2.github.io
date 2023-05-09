@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ZZ</title>
+    </head>
+    <body 
+        style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        "
+    >
+        <h1 
+            style="
+                font-family: monospace;
+                font-weight: normal;
+                font-size: 30px;
+                color: #298200;
+            "
+        ></h1>
+        <span 
+            style="
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 30px;
+                color: white;
+                visibility: hidden;
+            "
+        >|</span>
+        <script>
+            async function sleep(ms) { 
+                return new Promise(res => setTimeout(res, ms)); 
+            }
+
+            async function typeCode(text) { 
+                for (let i = 0; i <= text.length; i++) {
+                    await sleep(130);
+                    document.querySelector("body > h1").innerText = text.slice(0, i); 
+                }
+            }
+
+            async function toggleCursorNTimes(n) {
+                const cursor = document.querySelector("body > span");
+                for (let i = 0; i < n; i++) {
+                    await sleep(350);
+                    if (cursor.style.visibility === "hidden") {
+                        cursor.style.visibility = "visible";
+                    } else {
+                        cursor.style.visibility = "hidden";
+                    }
+                }
+            }
+           
+            async function run() {
+                await toggleCursorNTimes(5);
+                await typeCode("// TODO coming soon...");
+                await toggleCursorNTimes(Infinity);
+            };
+
+            run();
+        </script>
+    </body>
+</html>
