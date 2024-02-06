@@ -1,125 +1,135 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>ZZ</title>
-        <meta name="theme-color" content="black">
-        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-        <link rel="manifest" href="site.webmanifest">
-        <style>
-            * {
-                padding: 0;
-                margin: 0;
-                color: unset;
-            }
+  <head>
+    <title>ZZ</title>
+    <meta name="theme-color" content="black" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        color: unset;
+      }
 
-            body {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: black;
-                min-height: 100vh;
-            }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        min-height: 100vh;
+      }
 
-            main {
-                max-width: 750px;
-                display: flex; 
-                flex-wrap: wrap;
-            }
+      main {
+        max-width: 750px;
+        display: flex;
+        flex-wrap: wrap;
+      }
 
-            .codeline {
-                font-family: monospace;
-                font-weight: normal;
-                font-size: 5em;
-                color: gray;
-            }
+      .codeline {
+        font-family: monospace;
+        font-weight: normal;
+        font-size: 5em;
+        color: gray;
+      }
 
-            #cursor {
-                font-family: monospace;
-                font-weight: bold;
-                font-size: 5em;
-                color: white;
-                visibility: hidden;
-            }
+      #cursor {
+        font-family: monospace;
+        font-weight: bold;
+        font-size: 5em;
+        color: white;
+        visibility: hidden;
+      }
 
-            a {
-                text-decoration-thickness: from-font;
-                text-underline-offset: 10px;
-            }
+      a {
+        text-decoration-thickness: from-font;
+        text-underline-offset: 10px;
+      }
 
-            /* Update body height for iOS Safari */
-            @supports (-webkit-touch-callout: none) {
-                body {
-                    min-height: -webkit-fill-available;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <main>
-            <span id="cursor">|</span>
-        </main>
-        <script>
-            async function sleep(ms) { 
-                return new Promise(res => setTimeout(res, ms)); 
-            }
+      /* Update body height for iOS Safari */
+      @supports (-webkit-touch-callout: none) {
+        body {
+          min-height: -webkit-fill-available;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span id="cursor">|</span>
+    </main>
+    <script>
+      async function sleep(ms) {
+        return new Promise((res) => setTimeout(res, ms));
+      }
 
-            async function typeCodeLine(text) { 
-                const codeLine = document.createElement("p");
-                codeLine.setAttribute("class", "codeline");
-                document.querySelector("main").insertBefore(codeLine, document.querySelector("#cursor"));
+      function random(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
 
-                text = "// " + text; 
-                for (let i = 0; i <= text.length; i++) {
-                    await sleep(60); 
-                    const s = text.slice(0, i);
-                    codeLine.innerText = s;
-                    if (s.startsWith("// ")) {
-                        codeLine.style.color = "green";
-                    };
-                }
+      async function typeCodeLine(text) {
+        const codeLine = document.createElement("p");
+        codeLine.setAttribute("class", "codeline");
+        document
+          .querySelector("main")
+          .insertBefore(codeLine, document.querySelector("#cursor"));
 
-                return codeLine;
-            }
+        text = "// " + text;
+        for (let i = 0; i <= text.length; i++) {
+          const n = random(40, 60);
+          await sleep(n);
+          const s = text.slice(0, i);
+          codeLine.innerText = s;
+          if (s.startsWith("// ")) {
+            codeLine.style.color = "green";
+          }
+        }
 
-            async function typeEmailCodeLine(email) {
-                const codeLine = await typeCodeLine(email);
-                codeLine.innerHTML = codeLine.innerText.replace(email, `<a href="mailto: ${email}">${email}</a>`);
-            }
+        return codeLine;
+      }
 
-            function breakLastCodeLine(text) { 
-                const codeLines = document.querySelectorAll("main > p");
-                codeLines[codeLines.length-1].style.width = "100%";
-            }
+      async function typeEmailCodeLine(email) {
+        const codeLine = await typeCodeLine(email);
+        codeLine.innerHTML = codeLine.innerText.replace(
+          email,
+          `<a href="mailto: ${email}">${email}</a>`
+        );
+      }
 
-            async function toggleCursorNTimes(n) {
-                const cursor = document.querySelector("#cursor");
-                for (let i = 0; i < n; i++) {
-                    await sleep(350);
-                    if (cursor.style.visibility === "visible") {
-                        cursor.style.visibility = "hidden";
-                    } else {
-                        cursor.style.visibility = "visible";
-                    }
-                }
-            }
-           
-            async function run() {
-                await toggleCursorNTimes(5);
-                await typeCodeLine("TODO coming soon");
-                breakLastCodeLine();
-                await typeCodeLine("");
-                breakLastCodeLine();
-                await typeCodeLine("for now you can");
-                breakLastCodeLine();
-                await typeCodeLine("hit me up at:");
-                breakLastCodeLine();
-                await typeEmailCodeLine("me@ztimes2.com");
-                await toggleCursorNTimes(Infinity);
-            };
+      function breakLastCodeLine(text) {
+        const codeLines = document.querySelectorAll("main > p");
+        codeLines[codeLines.length - 1].style.width = "100%";
+      }
 
-            run();
-        </script>
-    </body>
+      async function toggleCursorNTimes(n) {
+        const cursor = document.querySelector("#cursor");
+        for (let i = 0; i < n; i++) {
+          await sleep(350);
+          if (cursor.style.visibility === "visible") {
+            cursor.style.visibility = "hidden";
+          } else {
+            cursor.style.visibility = "visible";
+          }
+        }
+      }
+
+      async function run() {
+        await toggleCursorNTimes(5);
+        await typeCodeLine("TODO coming soon");
+        breakLastCodeLine();
+        await typeCodeLine("");
+        breakLastCodeLine();
+        await typeCodeLine("for now you can");
+        breakLastCodeLine();
+        await typeCodeLine("hit me up at:");
+        breakLastCodeLine();
+        await typeEmailCodeLine("me@ztimes2.com");
+        await toggleCursorNTimes(Infinity);
+      }
+
+      run();
+    </script>
+  </body>
 </html>
