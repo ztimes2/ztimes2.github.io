@@ -47,14 +47,17 @@
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <style>
             .vh-100 {
-                height: 100vh !important;
+                height: none;
+                min-height: 100vh !important;
             }
 
             @supports (-webkit-touch-callout: none) {
                 .vh-100 {
-                    height: -webkit-fill-available !important;
+                    height: none;
+                    min-height: -webkit-fill-available !important;
                 }
             }
         </style>
@@ -65,35 +68,91 @@
         ></script>
     </head>
     <body class="container bg-black">
-        <header class="row row-cols-1 screen-height vh-100">
-            <div class="col"></div>
+        <div class="row row-cols-1 vh-100 gap-4">
             <div
-                class="col d-flex flex-column justify-content-center align-items-center"
+                class="col d-flex flex-column justify-content-center align-items-center pt-3"
             >
-                <h1 class="fs-3 fw-light text-center text-light">
+                <h1 class="fs-4 fw-light text-center text-light">
                     Hey, I'm Zhandos 👋
                 </h1>
-                <h2 class="display-4 fw-bold text-center text-light">
+                <h2 class="fw-bold text-center text-light">
                     Backend Software Engineer
                 </h2>
                 <p
-                    class="fs-6 fw-light text-center text-light mt-2 opacity-75"
+                    class="fs-6 fw-light text-center text-light"
                 >
                     Crafting scalable and high-performant distributed systems, Web APIs, CLIs, and SDKs using Go.
                 </p>
             </div>
-            <div
-                class="col d-flex flex-column justify-content-end align-items-center pb-5"
-            >
-                <h4 class="fw-light fs-6 text-light opacity-75">
-                    Interested? Let's get in touch:
-                </h4>
-                <a
-                    class="btn btn-outline-success btn-lg"
-                    href="mailto:zhandos@ztimes2.com"
-                    >zhandos@ztimes2.com</a
-                >
+            <div class="col">
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col">
+                        <div class="card text-bg-dark">
+                            <div class="card-body">
+                                <h5 class="card-title fs-4">Industry Expertise</h5>
+                                <p class="card-text fw-light fs-6">Over 6 years of professional experience working with international industry leaders such as <a class="text-info link-offset-2 fw-semibold link-underline link-underline-opacity-0 link-underline-info-hover link-underline-opacity-100-hover" href="https://corporate.zalora.com/about-us">ZALORA</a> and <a class="text-info link-offset-2 fw-semibold link-underline link-underline-opacity-0 link-underline-info-hover link-underline-opacity-100-hover" href="https://www.foodpanda.com/about-foodpanda">foodpanda (DeliveryHero)</a> serving millions of users across Asia, Europe and many other regions worldwide.</p>
+                            </div>
+                            <div class="card-footer p-0">
+                                <a href="https://drive.google.com/file/d/16Fv541vu1aBMV5agyNyUBRUtDNZ6WRw_/view?usp=share_link" target="_blank" class="btn btn-dark container-fluid p-3 opacity-75 rounded-top-0"><i class="bi bi-file-person-fill me-2"></i>CV / Resume</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-bg-dark">
+                            <div class="card-body">
+                                <h5 class="card-title fs-4">Engineering Proficiency</h5>
+                                <div class="d-flex flex-column gap-2">
+                                    <div>
+                                        <h6 class="mb-1 pt-1 fw-light fs-6">Backend</h6>
+                                        <ul class="p-0 m-0">
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">Go / Golang</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">REST</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">gRPC</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">PostgreSQL</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">MySQL</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">DynamoDB</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">Redis</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">Memcache</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">RabbitMQ</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">SNS / SQS</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">Kinesis</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1 pt-1 fw-light fs-6">DevOps</h6>
+                                        <ul class="p-0 m-0">
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">AWS</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">Terraform</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">Docker</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">ECS</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">CI & CD</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1 pt-1 fw-light fs-6">Frontend</h6>
+                                        <ul class="p-0 m-0">
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">HTML</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">CSS</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">JavaScript</li>
+                                            <li class="badge rounded-pill fw-semibold" style="background-color:slateblue">HTMX</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer p-0">
+                                <a href="https://github.com/ztimes2" target="_blank" class="btn btn-dark container-fluid p-3 opacity-75 rounded-top-0"><i class="bi bi-github me-2"></i>Github</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </header>
+            <div class="col d-flex flex-column justify-content-center align-items-center pt-2 pb-5">
+                <h4 class="fw-light fs-6 text-light opacity-75">Interested? Let's get in touch:</h4>
+                <div class="d-flex gap-2">
+                    <a class="btn btn-outline-success btn-lg" href="mailto:zhandos@ztimes2.com"><i class="bi bi-envelope-at-fill me-2"></i>zhandos@ztimes2.com</a>
+                    <a class="btn btn-outline-secondary btn-lg" href="https://linkedin.com/in/zhangilishbay" target="_blank"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
